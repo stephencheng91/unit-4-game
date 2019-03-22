@@ -1,48 +1,39 @@
-
-//Create variable to generate random number from 1 to 100
-var targetNumber = Math.floor(Math.random()*100+1);
-console.log(targetNumber);
-
-//Counting the sum of current State
+var targetNumber = 0;
 var sum = 0;
-//Send target number to html to display
-$("#target-Number").text(targetNumber);
 
-//Random Number Option
-var numberOption = [];
-for(var i=0; i<4 ;i++){
-    numberOption[i] = Math.floor(Math.random()*10+1);
-}
-console.log(numberOption);
+$(document).ready(function(){
+    gameStart();
+});
 
 
-//Assign Number for each Image 
 var gameStart = function(){
-    var gold = $("<img>");
-        gold.addClass("gold-image");
-        gold.attr("src",url="images/Gold 1.jpg");
-        gold.attr("gold-value", numberOption[0]);
-        $("#goldImages").append(gold);
+    //Create variable to generate random number from 1 to 100
+    targetNumber = Math.floor(Math.random()*100+1);
+    console.log(targetNumber);
 
-    var gold = $("<img>");
-        gold.addClass("gold-image");
-        gold.attr("src",url="images/Gold 2.jpg");
-        gold.attr("gold-value", numberOption[1]);
-        $("#goldImages").append(gold);
+    //Counting the sum of current State
 
-    var gold = $("<img>");
-        gold.addClass("gold-image");
-        gold.attr("src",url="images/Gold 4.jpg");
-        gold.attr("gold-value", numberOption[2]);
-        $("#goldImages").append(gold);
+    //Send target number to html to display
+    $("#target-Number").text(targetNumber);
 
-    var gold = $("<img>");
-        gold.addClass("gold-image");
-        gold.attr("src",url="images/Gold 6.jpg");
-        gold.attr("gold-value", numberOption[3]);
-        $("#goldImages").append(gold);
+    //Random Number Option
+    var numberOption = [];
+    for(var i=0; i<4 ;i++){
+        numberOption[i] = Math.floor(Math.random()*10+1);
+    }
+    console.log(numberOption);
+
+    for(var j =0; j<4; j++){
+        var gold = $("<img>");
+            gold.addClass("gold-image");
+            gold.attr("src",url="images/Gold "+[j]+".jpg");
+            gold.attr("gold-value", numberOption[j]);
+            $("#goldImages").append(gold);
+
+    }
 }
-gameStart();
+
+
 
 //Using onclick functions
 $(".gold-image").on("click", function(){
@@ -54,8 +45,16 @@ $(".gold-image").on("click", function(){
     
     if(sum === targetNumber){
         alert("Winner!");
+        $("#goldImages").empty();
+        sum = 0;
+        $("#current-State").text(sum);
+        gameStart();
     }else if (sum >= targetNumber){
         alert("You lose!");
+        $("#goldImages").empty();
+        sum = 0;
+        $("#current-State").text(sum);
+        gameStart();
     }
 })
 
