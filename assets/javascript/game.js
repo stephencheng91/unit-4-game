@@ -26,7 +26,7 @@ var gameStart = function(){
     for(var j =0; j<4; j++){
         var gold = $("<img>");
             gold.addClass("gold-image");
-            gold.attr("src",url="images/Gold "+[j]+".jpg");
+            gold.attr("src",url="assets/images/Gold "+[j]+".jpg");
             gold.attr("gold-value", numberOption[j]);
             $("#goldImages").append(gold);
 
