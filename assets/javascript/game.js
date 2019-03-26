@@ -1,9 +1,7 @@
 var targetNumber = 0;
 var sum = 0;
 
-$(document).ready(function(){
-    gameStart();
-});
+
 
 
 var gameStart = function(){
@@ -33,6 +31,14 @@ var gameStart = function(){
     }
 }
 
+gameStart();
+
+function reset(){
+    $("#goldImages").empty();
+    sum = 0;
+    $("#current-State").text(sum);
+    gameStart();
+}
 
 
 //Using onclick functions
@@ -45,16 +51,10 @@ $(".gold-image").on("click", function(){
     
     if(sum === targetNumber){
         alert("Winner!");
-        $("#goldImages").empty();
-        sum = 0;
-        $("#current-State").text(sum);
-        gameStart();
+        reset();
     }else if (sum >= targetNumber){
         alert("You lose!");
-        $("#goldImages").empty();
-        sum = 0;
-        $("#current-State").text(sum);
-        gameStart();
+        reset()
     }
 })
 
